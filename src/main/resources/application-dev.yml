@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springdata
+    username: postgres
+    password: "0000"
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comment: true
+  devtools: 
+   livereload: 
+    enable: true
+  freemarker:
+   cache: false
+  
+  
+server:
+  port: 8081

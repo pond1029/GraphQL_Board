@@ -1,0 +1,14 @@
+type Query{
+	getBoardList: [Board]
+}
+
+type Mutation{
+	setBoard(content: String!): Board!
+}
+
+type Board{
+	boardId: Int
+	content: String
+	date: String
+}
+
