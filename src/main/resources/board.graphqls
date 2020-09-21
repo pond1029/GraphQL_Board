@@ -3,12 +3,20 @@ type Query{
 }
 
 type Mutation{
-	setBoard(content: String!): Board!
+	setBoard(input: BoardInput): Board!
 }
 
 type Board{
 	boardId: Int
 	content: String
+	author: String
+	date: String
+}
+
+input BoardInput{
+	boardId: Int
+	content: String
+	author:String
 	date: String
 }
 

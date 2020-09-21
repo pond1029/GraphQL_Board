@@ -24,6 +24,7 @@ public class Board {
 	@Id @GeneratedValue
 	private Long boardId;	
 	private String content;
+	private String author;
 	@NotNull
 	private Date date;
 }

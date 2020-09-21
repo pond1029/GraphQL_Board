@@ -19,7 +19,7 @@ public class BoardDataFetcher {
 	
 	public DataFetcher<?> setBoard(){
 		return dataFetchingEnvironment ->{
-			return boardService.save(dataFetchingEnvironment.getArgument("content"));
+			return boardService.save(dataFetchingEnvironment.getArgument("input"));
 		};
 	}
 	

@@ -2,6 +2,7 @@ package com.pond.graph_ql.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,12 @@ public class BoardService {
 		return boardRepository.findAllByOrderByDateDesc();
 	}
 	
-	public Board save(String content) {
+	public Board save(Map<String, Object> input) {
+		
 		Board newBoard = new Board();
-		newBoard.setContent(content);
 		newBoard.setDate(new Date());
+		newBoard.setContent((String) input.get("content"));
+		newBoard.setAuthor((String) input.get("author"));
 		return boardRepository.save(newBoard);
 	}
 }

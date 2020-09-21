@@ -29,8 +29,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Write here.</h6>
-              <p contenteditable="true" class="w3-border w3-padding" id = "writeContent"></p>
+				<label class="w3-text-black"><b>Author</b></label>
+				<input id="create-author" class="w3-input" type="text">
+				<label class="w3-text-black"><b>Content</b></label>
+				<input id="create-content"class="w3-input" type="text">
               <button type="button" class="w3-button w3-theme" onclick="createBoard()"><i class="fa fa-pencil"></i>  Post</button> 
             </div>
           </div>
@@ -53,6 +55,7 @@ function retrieveBoardList(){
 		getBoardList{
 			boardId
 			content
+			author
 			date
 		}
 	}`;
@@ -66,15 +69,21 @@ function retrieveBoardList(){
 }
 
 function createBoard(){
-	let text = document.getElementById('writeContent').innerHTML;
-	document.getElementById('writeContent').innerHTML = "";
+	let author = document.getElementById('create-author').value;
+	document.getElementById('create-author').value = "";
+	let content = document.getElementById('create-content').value;
+	document.getElementById('create-content').value = "";
 	
 	const query = `mutation{
 		setBoard(
-			content: "${text}"
+			input: {
+				author: "${author}"
+				content:"${content}"
+			}
 			){
 				boardId
 				content
+				author
 				date
 			}
 		}`;
@@ -126,7 +135,7 @@ function drawContent(board){
 	date.appendChild(dateValue);
 	  
 	var userName = document.createElement("h4");
-	var nameValue = document.createTextNode("anonymous");
+	var nameValue = document.createTextNode(board.author);
 	userName.appendChild(nameValue);
 	   
 	var line = document.createElement("hr");
