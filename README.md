@@ -6,3 +6,6 @@ GraphQL, JPA, Spring boot 를 사용하여 간단한 게시판 구현
 
 # Screenshot
 ![board](https://user-images.githubusercontent.com/33679658/91118683-74789d80-e6cc-11ea-80b6-d700e82682d7.PNG)
+
+# Demo Page
+http://ec2-15-164-219-186.ap-northeast-2.compute.amazonaws.com:8081/board.do
