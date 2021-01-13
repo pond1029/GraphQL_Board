@@ -6,7 +6,7 @@ spring:
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         show_sql: true
@@ -17,7 +17,6 @@ spring:
     enable: true
   freemarker:
    cache: false
-  
   
 server:
   port: 8081
