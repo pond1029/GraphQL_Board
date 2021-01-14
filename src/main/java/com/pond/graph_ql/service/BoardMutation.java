@@ -9,15 +9,11 @@
 
 package com.pond.graph_ql.service;
 
-import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.pond.graph_ql.domain.Board;
 import com.pond.graph_ql.repository.BoardRepository;
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/bootstrap.min.css" rel="stylesheet"/>
 <meta charset="UTF-8">
 <title>Graphql Board</title>
 </head>
@@ -38,39 +38,39 @@
 					    <label for="inputContent">Content</label>
 					    <input type="text" class="form-control" id="inputContent">
 					  </div>
-					  <button type="submit" class="btn btn-primary" onclick="create()">Submit</button>
+					  <button class="btn btn-primary" onclick="create()">Submit</button>
 					</form>
         	</div>
-        </div>
+        </div>      
       
-      
-        <div id="boardList" class="card card-outline-secondary my-2"> </div>
-      
-</div>
-    
+        <div id="boardList" class="card card-outline-secondary my-2"></div>      
+</div>    
 
 <!-- Modal -->
-<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Remove</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-					    <label for="inputRemove">Insert Remove Key</label>
-					    <input type="text" class="form-control" id="inputRemove">
-					    <input type="hidden" class="form-control" id="inputRemoveId">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="remove()" data-bs-dismiss="modal">Remove</button>
-      </div>
-    </div>
-  </div>
+<div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="removeModalLabel">Remove</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<label for="inputRemove">Insert RemoveKey</label>
+				<input type="text" class="form-control" id="inputRemove">
+				<input type="hidden" class="form-control" id="inputRemoveId">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="remove()" data-bs-dismiss="modal">Remove</button>
+			</div>
+		</div>
+	</div>
 </div>
-        
-    </div>
+
+</div>
+
+
+
   <!-- Footer -->
   <footer class="py-1">
     <div class="container">
@@ -82,7 +82,7 @@
     <!-- /.container -->
   </footer>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+	<script th:src="@{/bootstrap.min.js}"></script>
 	<script th:src="@{/jquery.js}"></script>
 </body>
 <script type="text/javascript">
@@ -105,8 +105,7 @@ function remove(){
 				author
 				updatedDate
 			}
-		}`;
-	
+		}`;	
 	sendApi(query).done((res) => {
 		retrieve(); 
     });	
@@ -120,8 +119,7 @@ function retrieve(){
 		author
 		updatedDate
 		}
-	}`;
-	
+	}`;	
     sendApi(query).done((fragment) => {
     	reDraw(fragment.data);
     });    
@@ -153,16 +151,14 @@ function create(){
     });	
 }
 
-function sendApi(query){	 
-
-	var url = location.protocol+'//' + location.hostname + ':' + location.port + '/graphql';
+function sendApi(query){	
+	var url = location.origin + '/graphql';
 	 return $.ajax({
 	        url: url,
 	        type:"POST",
 	        contentType: "application/json",
 	        data: JSON.stringify({ query }),
 	    });
-
 }
 
 function reDraw(boardList){
