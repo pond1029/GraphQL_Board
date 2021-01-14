@@ -75,15 +75,14 @@
   <footer class="py-1">
     <div class="container">
       <p class="m-0 text-center">
-      <a class="nav-link" th:href="@{https://github.com/pond1029}">Github</a>
+      <a href="https://github.com/pond1029/GraphQL_Board">Github</a>
       Pond1029@naver.com
       </p>
     </div>
     <!-- /.container -->
   </footer>
 
-	<script th:src="@{/bootstrap.min.js}"></script>
-	<script th:src="@{/jquery.js}"></script>
+	<script src="/bootstrap.min.js"></script>
 </body>
 <script type="text/javascript">
 retrieve();
@@ -106,7 +105,8 @@ function remove(){
 				updatedDate
 			}
 		}`;	
-	sendApi(query).done((res) => {
+		
+	sendApi(query).then((res) => {
 		retrieve(); 
     });	
 }
@@ -120,9 +120,12 @@ function retrieve(){
 		updatedDate
 		}
 	}`;	
-    sendApi(query).done((fragment) => {
-    	reDraw(fragment.data);
-    });    
+	
+    sendApi(query)
+		.then((res) => res.json())
+		.then(json => {
+			reDraw(json.data)
+	});
 }
 
 function create(){
@@ -146,25 +149,29 @@ function create(){
 			}
 		}`;
 	
-	sendApi(query).done((res) => {
+	sendApi(query).then((res) => {
 		retrieve(); 
     });	
 }
 
 function sendApi(query){	
 	var url = location.origin + '/graphql';
-	 return $.ajax({
-	        url: url,
-	        type:"POST",
-	        contentType: "application/json",
-	        data: JSON.stringify({ query }),
-	    });
+	return fetch(
+			url,
+			{
+				method: 'POST',
+				headers:{
+					'Content-Type':'application/json'
+				},
+				body: JSON.stringify({ query })
+			}
+		);	
 }
 
 function reDraw(boardList){
 	const parentDiv = document.getElementById("boardList");
 	parentDiv.innerHTML = '';
-	
+	if(boardList == null) return;
 	for(let i = 0; i < boardList.getBoardList.length; i++){
 		  var newDiv = drawContent(boardList.getBoardList[i]);
 		  parentDiv.append(newDiv);
@@ -218,7 +225,6 @@ function drawContent(board){
 	
 	return newDiv;
 }   
-
 
 </script>
 </html>

@@ -34,7 +34,7 @@ public class BoardMutation implements GraphQLMutationResolver{
 	private final BoardRepository boardRepository;	
 	
 	public Board setBoard(String author, String content, String removeKey) {
-		if(author.isBlank() || content.isBlank() || removeKey.isBlank()) {
+		if(author.isEmpty() || content.isEmpty() || removeKey.isEmpty()) {
 			return null;
 		}
 		
@@ -49,7 +49,7 @@ public class BoardMutation implements GraphQLMutationResolver{
 	
 	public Board removeBoard(Long boardId, String removeKey) {
 		Optional<Board> removeBoard = boardRepository.findByBoardId(boardId);
-		if(removeBoard.isEmpty()) return null;
+		if(!removeBoard.isPresent()) return null;
 		Board targetBoard = removeBoard.get();
 		if(!targetBoard.getRemoveKey().equals(removeKey))return null;
 		targetBoard.setVisible(false);
