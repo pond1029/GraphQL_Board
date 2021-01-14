@@ -24,9 +24,8 @@ import lombok.RequiredArgsConstructor;
   * @Date : 2021. 1. 13. 
   * @Author : "LeeJaeYeon"
   * @Version :
-  * @Information :
+  * @Information : 게시판 쿼리
   */
-
 @Service
 @RequiredArgsConstructor
 public class BoardQuery implements  GraphQLQueryResolver{

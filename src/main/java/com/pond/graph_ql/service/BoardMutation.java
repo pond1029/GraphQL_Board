@@ -25,9 +25,8 @@ import lombok.RequiredArgsConstructor;
   * @Date : 2021. 1. 13. 
   * @Author : "LeeJaeYeon"
   * @Version :
-  * @Information :
+  * @Information : 게시판 뮤테이션
   */
-
 @Service
 @RequiredArgsConstructor
 public class BoardMutation implements GraphQLMutationResolver{

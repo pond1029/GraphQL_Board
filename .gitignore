@@ -4,6 +4,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+application-production.yml
 
 ### STS ###
 .apt_generated
@@ -45,7 +46,6 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-*.yml
 
 # External tool builders
 .externalToolBuilders/
